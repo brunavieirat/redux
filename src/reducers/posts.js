@@ -12,7 +12,8 @@ export default function posts(state = [], action) {
     case ADD_POST:
       return [...state, action.newpost];
     case DELETE_POST:
-      return state.filter(({ id }) => id !== action.id);
+    console.log('state', state.filter(s => s.id ))
+      return state.filter(( id ) => id !== action.id);
     default:
       return state;
    

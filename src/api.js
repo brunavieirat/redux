@@ -62,9 +62,9 @@ export const APIdelPosts = id =>
   axios({
     url: API_URL + `/posts/${id}`,
     method: 'DELETE',
-    data: {
-      id
-    }
+    // data: {
+    //   id
+    // }
   }).then(response => {
     return response.data;
   });
