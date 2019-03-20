@@ -55,7 +55,7 @@ export const createpost = newpost => {
   }
   return dispatch => {
     return APIaddposts(post).then(newp => {
-      dispatch(addPost( newp ));
+      dispatch(addPost(newp));
     });
   };
 };

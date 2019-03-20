@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { delpost } from "../actions/posts";
 import Post from "./Post";
 import { MdAssignment } from "react-icons/md";
+import PostDetails from "./PostDetails";
 
 //Ajuda do slack Alexandre Rocha para criar a função de sort()
 function orderPosts(posts, option) {
@@ -37,8 +38,7 @@ class Dashboard extends Component {
   };
 
   onDelete = id => {
- this.props.deletePost(id).then(res => console.log(res));
- console.log('id', id)
+    this.props.deletePost(id)
   };
 
   render() {
@@ -52,7 +52,7 @@ class Dashboard extends Component {
           <h1>Posts</h1>
           <MdAssignment className="icon-post" />
         </div>
-        <div className="buttons">       
+        <div className="buttons">
           <button
             className=" btn order-date"
             onClick={() => this.handleOptionChange("date")}
@@ -87,10 +87,14 @@ class Dashboard extends Component {
         <ul className="postlist">
           {orderedPosts.map((post, index) => (
             <li key={index}>
-              <Post post={post}/>   
+              <Post post={post} />
               <div className="buttons">
-              <button className="btn leia">Leia Mais</button> 
-              <button className="btn editar">Editar</button>
+                <button className="btn leia"
+                  onClick={() => {
+                    this.props.history.push(`/posts/${post.id}`, { teste: post })
+                  }
+                  }>Leia Mais</button>
+                <button className="btn editar">Editar</button>
                 <button
                   className="btn deletar"
                   onClick={() => {
@@ -100,8 +104,8 @@ class Dashboard extends Component {
                 >
                   Deletar
                 </button>
-            </div>             
-            </li>          
+              </div>
+            </li>
           ))}
         </ul>
       </div>
@@ -109,8 +113,7 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ posts, categories }) {
-  
+function mapStateToProps({ posts, categories }, props) {
   return {
     posts: Object.values(posts),
     categories: Object.values(categories)

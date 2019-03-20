@@ -46,7 +46,6 @@ export const APIfetchPost = (id) => {
 
 
 export const APIaddposts = (newpost) => {
-  console.log(newpost)
   return (
     axios({
       url: API_URL + '/posts',
@@ -54,6 +53,8 @@ export const APIaddposts = (newpost) => {
       data: {
         ...newpost
       }
+    }).then(response => {
+      return response.data
     })
   )
 }

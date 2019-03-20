@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleComments } from "../actions/comments";
+import { loadpost } from "../actions/posts";
 import { MdAssignment } from "react-icons/md";
 import Post from "./Post";
 
@@ -9,9 +10,10 @@ class PostDetails extends Component {
     super(props);
   }
 
+
   render() {
-    const { post } = this.props;
-    //console.log(post[0])
+    const { teste } = this.props.location.state;
+    console.log(this.props)
     return (
       <React.Fragment>
         <div className="pageTitle">
@@ -19,24 +21,14 @@ class PostDetails extends Component {
           <MdAssignment className="icon-post" />
         </div>
         <div className="postlist">
-          <Post post={post} />
+          <Post post={teste} />
         </div>
       </React.Fragment>
     );
   }
 }
-function mapStateToProps({ posts }, props) {
-  const filteredposts = Object.values(posts).map(post => {
-    return post;
-  });
-  const postinfo = filteredposts.filter(el => {
-    //console.log(el.id + 'hfhfh')
-    return el.id === props.match.params.postId;
-  });
-  //console.log(postinfo)
-  return {
-    post: postinfo[0]
-  };
-}
 
-export default connect(mapStateToProps)(PostDetails);
+
+
+export default connect()(PostDetails);
+

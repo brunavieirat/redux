@@ -7,15 +7,15 @@ export default function posts(state = [], action) {
   switch (action.type) {
     case RECEIVE_POSTS:
       return action.posts;
-     case LOAD_POST:
+    case LOAD_POST:
       return action.post;
     case ADD_POST:
       return [...state, action.newpost];
     case DELETE_POST:
-    console.log('state', state.filter(s => s.id ))
-      return state.filter(( id ) => id !== action.id);
+      const { id } = action.id;
+      return state.filter((st) => st.id !== id);
     default:
       return state;
-   
+
   }
 }

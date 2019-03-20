@@ -5,12 +5,12 @@ import { createpost } from "../actions/posts";
 
 
 const AddPost = props => {
- 
+  console.log('add', props)
   return (
   
     <div>
       <h1 className="pageTitle">Adiciona Posts</h1>
-      <PostForm
+      <PostForm 
         onSubmit={newpost => {
           props.dispatch(createpost(newpost));
           props.history.push("/");
